@@ -5,11 +5,13 @@ import static org.junit.Assert.assertEquals;
 
 public class GOLTester {
     /* "board1", "board2", "board3", "board4" are the boards
-     * that need to be tested, respectively, from the instructions PDF */
+     * that need to be tested, respectively, from the instructions PDF
+     * "board5" and "board6" are other boards created to test the games */
     int[][] board1 = {{0,0,0,0,0}, {0,0,0,0,0,0}, {0,1,1,1,0}, {0,0,0,0,0}, {0,0,0,0,0}};
     int[][] board2 = {{0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,1,1,1,0}, {0,1,1,1,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}};
     int[][] board3 = {{0,0,0,0,0,0}, {0,1,1,0,0,0}, {0,1,1,0,0,0}, {0,0,0,1,1,0}, {0,0,0,1,1,0}, {0,0,0,0,0,0}};
     int[][] board5 = {{0,0,0,0,0,0}, {0,1,0,0,0,1}, {0,1,0,1,0,1}, {0,1,0,1,0,1}, {0,0,0,1,0,0}, {0,0,0,0,0,0}};
+    int[][] board6 = {{0,0,0,0,0,0}, {0,0,1,1,0,0}, {0,1,0,0,1,0}, {0,0,1,0,1,0}, {0,0,0,1,0,0}, {0,0,0,0,0,0}};
 
     /* First Method
      * changes the current board into the next state
@@ -195,63 +197,11 @@ public class GOLTester {
 
     @Test
     void oneStep9() {
-        //Board #4
-        int[][] arr = new int[18][18];
-        arr[2][5] = 1;
-        arr[3][4] = 1;
-        arr[3][5] = 1;
-        arr[3][6] = 1;
-        arr[4][3] = 1;
-        arr[4][5] = 1;
-        arr[4][7] = 1;
-        arr[5][3] = 1;
-        arr[5][5] = 1;
-        arr[5][7] = 1;
-        arr[6][4] = 1;
-        arr[6][5] = 1;
-        arr[6][6] = 1;
-        arr[7][5] = 1;
-
-        arr[10][5] = 1;
-        arr[11][4] = 1;
-        arr[11][5] = 1;
-        arr[11][6] = 1;
-        arr[12][3] = 1;
-        arr[12][5] = 1;
-        arr[12][7] = 1;
-        arr[13][3] = 1;
-        arr[13][5] = 1;
-        arr[13][7] = 1;
-        arr[14][4] = 1;
-        arr[14][5] = 1;
-        arr[14][6] = 1;
-        arr[15][5] = 1;
-
-        TorusGameOfLife a = new TorusGameOfLife(arr);
-        int[][] expect = new int[18][18];
-        expect[2][4] = 1;
-        expect[2][5] = 1;
-        expect[2][6] = 1;
-        expect[4][3] = 1;
-        expect[4][7] = 1;
-        expect[5][3] = 1;
-        expect[5][7] = 1;
-        expect[7][4] = 1;
-        expect[7][5] = 1;
-        expect[7][6] = 1;
-        expect[10][4] = 1;
-        expect[10][5] = 1;
-        expect[10][6] = 1;
-        expect[12][3] = 1;
-        expect[12][7] = 1;
-        expect[13][3] = 1;
-        expect[13][7] = 1;
-        expect[15][4] = 1;
-        expect[15][5] = 1;
-        expect[15][6] = 1;
+        //Board #6
+        TorusGameOfLife a = new TorusGameOfLife(board6);
 
         a.oneStep();
-        assertArrayEquals(expect, a.getBoard());
+        assertArrayEquals(board6, a.getBoard());
     }
 
     @Test
@@ -302,41 +252,10 @@ public class GOLTester {
 
     @Test
     void neighbors4() {
-        //Board #4
-        int[][] arr = new int[18][18];
-        arr[2][5] = 1;
-        arr[3][4] = 1;
-        arr[3][5] = 1;
-        arr[3][6] = 1;
-        arr[4][3] = 1;
-        arr[4][5] = 1;
-        arr[4][7] = 1;
-        arr[5][3] = 1;
-        arr[5][5] = 1;
-        arr[5][7] = 1;
-        arr[6][4] = 1;
-        arr[6][5] = 1;
-        arr[6][6] = 1;
-        arr[7][5] = 1;
+        //Board #6
+        GameOfLife b = new GameOfLife(board6);
 
-        arr[10][5] = 1;
-        arr[11][4] = 1;
-        arr[11][5] = 1;
-        arr[11][6] = 1;
-        arr[12][3] = 1;
-        arr[12][5] = 1;
-        arr[12][7] = 1;
-        arr[13][3] = 1;
-        arr[13][5] = 1;
-        arr[13][7] = 1;
-        arr[14][4] = 1;
-        arr[14][5] = 1;
-        arr[14][6] = 1;
-        arr[15][5] = 1;
-
-        GameOfLife b = new GameOfLife(arr);
-
-        assertEquals(4,b.neighbors(3,5));
+        assertEquals(4,b.neighbors(3,3));
     }
 
     @Test
